@@ -1,0 +1,16 @@
+=====
+Tests
+=====
+
+Module Modules
+{
+test
+}
+
+---
+
+(source_file
+  (top_level_statement
+    (module_statement
+      (module_block
+        (inner_statement)))))
