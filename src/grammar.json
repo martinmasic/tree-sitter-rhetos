@@ -17,6 +17,10 @@
         }
       ]
     },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+    },
     "module_statement": {
       "type": "SEQ",
       "members": [
@@ -25,10 +29,25 @@
           "value": "Module"
         },
         {
+          "type": "PATTERN",
+          "value": "\\s"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
           "type": "SYMBOL",
           "name": "module_block"
         }
       ]
+    },
+    "block_content": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "inner_statement"
+      }
     },
     "module_block": {
       "type": "SEQ",
@@ -38,11 +57,8 @@
           "value": "{"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "inner_statement"
-          }
+          "type": "SYMBOL",
+          "name": "block_content"
         },
         {
           "type": "STRING",

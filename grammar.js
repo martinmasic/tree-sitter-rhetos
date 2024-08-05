@@ -14,21 +14,22 @@ module.exports = grammar({
       // $.flat_statement
     ),
 
+    identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+
     module_statement: $ => seq(
       'Module',
+      /\s/,
       $.identifier,
       $.module_block
     ),
 
-    identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    block_content: $ => repeat($.inner_statement),
 
     module_block: $ => seq(
       '{',
       $.block_content,
       '}'
     ),
-
-    block_content: $ => repeat($.inner_statement),
 
     inner_statement: $ => 'test',
 
@@ -37,10 +38,10 @@ module.exports = grammar({
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
-        '/',
-      ),
+        '/'
+      )
     )),
-  },
+  }
 
 
 })
